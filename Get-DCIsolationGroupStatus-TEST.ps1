@@ -28,7 +28,7 @@ foreach ($server in $servers) {
         $isdc = 0
     }
         
-    #$server; $hostdomain; $hostaccount,$SAMAccountName 
+    $server; $hostdomain; $hostaccount, $SAMAccountName 
     $InGroup = ((Get-ADGroupMember -Identity $SecurityGroup -Server "$hostdomain").name | Where-Object { $_ -like "$hostaccount*" }).count
 
     if (($ingroup -eq $true) -and ($isdc -eq 1)) {

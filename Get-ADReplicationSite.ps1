@@ -1,1 +1,1 @@
-Get-AdReplicationSite -Filter * | Select Name
+Get-AdReplicationSite -Filter * | Select-Object Name
