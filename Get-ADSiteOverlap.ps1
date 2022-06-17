@@ -18,7 +18,7 @@ Write-Host "Root target domain: $targetdomain"
 foreach ($domainname in (Get-ADForest -Server $targetdomain).Domains) {
     foreach ($dc in (Get-ADDomainController -Server $domainname -Filter *).HostName) {
 
-        $isavailable = (Test-Connection -ComputerName $dc -Count 1 -ErrorAction SilentlyContinue)
+        $isavailable = (Test-Connection -ComputerName $dc -Count 1 -ErrorAction SilentlyContinue  )
 
         if ($isavailable) {
             
@@ -76,6 +76,7 @@ ForEach ($Subnet in $Subnets) {
 ## Export the sites and subnets collection array as a CSV file
 $ResultsArray | Sort-Object Subnet | Export-Csv .\AD-Subnets.csv -nti -Force
 
+Write-Host "BEGIN SUBNET OVERLAP CALCULATION..." -ForegroundColor Cyan
 
 ##Perform computation of subnet overlap using the current array
 
