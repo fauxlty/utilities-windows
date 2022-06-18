@@ -1,5 +1,5 @@
 $domain = ""
-$arrayTotalDCCount = @()
+$arrayTotalDCCount = [System.Collections.ArrayList]@()
 
 $forest = Get-ADForest
 $domainlist = get-adforest | Select-Object -expandproperty domains
@@ -19,7 +19,7 @@ foreach ($domain in $domainlist) {
     write-host "The number of Domain Controllers in $domain domain is $DCnumber"
     write-host "The number of Global Catalog hosts in $domain domain is $GCnumber"
 
-    $arrayTotalDCCount = $arrayTotalDCCount + $DCnumber
+    $arrayTotalDCCount.Add( $DCnumber) | Out-Null
 
     write-host $domain
    
