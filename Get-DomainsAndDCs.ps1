@@ -31,8 +31,8 @@ foreach ($domainname in (Get-ADForest -Server $targetdomain).Domains) {
     }
 }
 
-$array | Sort-Object Domain, Name | Format-Table -AutoSize
-$array | Sort-Object Domain, Name | Export-csv .\ADDomainsAndDCs.csv -nti -force
+$array | Sort-Object Domain, Name, Site | Format-Table -AutoSize
+$array | Sort-Object Domain, Name, Site | Export-csv .\ADDomainsAndDCs.csv -nti -force
 
 #Close up shop
 $array.Clear()
