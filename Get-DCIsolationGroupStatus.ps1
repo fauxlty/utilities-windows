@@ -94,5 +94,5 @@ Write-Host "Total servers scanned for DC role: $ServersToScan"
 Write-Host "***************************************************************************"
 
 #Close up shop
-#$array.Clear()
+$array.Clear()
 [gc]::Collect()
