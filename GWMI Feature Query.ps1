@@ -1,0 +1,1 @@
+﻿gwmi -query 'SELECT Name,ID FROM Win32_ServerFeature WHERE Name like "%Insights%"' | ft

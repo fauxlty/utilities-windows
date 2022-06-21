@@ -1,0 +1,1 @@
+﻿gwmi -query 'Select * from Win32_ServerFeature where ID = "200"'
