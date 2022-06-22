@@ -79,3 +79,17 @@ Invoke-Command { netsh advfirewall firewall set rule group="remote desktop" new 
 Add-ADGroupMember -Identity $securitygroup -Members $samaccount -Server $domain
 
 Restart-Computer -ComputerName $server -Force
+
+adfind commands
+
+FYI - here is some syntax using alldc (instead for for /f) for quickly checking a set of dc's, etc
+alldc homeoffice.wal-mart.com "adfind -hh <server> -rootdse currenttime"
+
+This will find errors with auth vs just ldap respons
+alldc homeoffice.wal-mart.com "uptime \\<server>"
+
+forgot the domain
+for /f %i in ('adfind -hh wal-mart.com -sc dclist') do adfind -hh %i -rootdse currenttime -alldcd -list
+
+or the entire forest 😛 
+for /f %i in ('adfind -gcb -sc dclist') do adfind -hh %i -rootdse currenttime -alldcd -list
