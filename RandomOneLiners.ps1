@@ -93,3 +93,6 @@ for /f %i in ('adfind -hh wal-mart.com -sc dclist') do adfind -hh %i -rootdse cu
 
 or the entire forest 😛 
 for /f %i in ('adfind -gcb -sc dclist') do adfind -hh %i -rootdse currenttime -alldcd -list
+
+#Get the job title
+(get-aduser b0m00hq -Properties directreports).directreports| foreach-object { Get-ADUser -Identity $psitem -Properties wm-JobCode, Title} | Select-object Name, wm-JobCode, Title  | sort-object wm-jobcode
